@@ -1,0 +1,104 @@
+#include <stdio.h>
+#include <string.h>
+
+struct Mahasiswa{
+	
+	char nama[50];
+	float nilai;
+	struct Mahasiswa *next;
+	
+}*head, *tail, *temp;
+
+//head adalah pointer yang menyimpan alamat data pertama
+//tail adalah pointer yang menyimpan alamat data terakhir
+//temp adalah pointer yang digunakan sebagai temporary variabel
+
+
+void menu();
+
+int main(){
+	menu();
+	return 0;
+}
+
+
+void insert(float nilai, char nama[]){
+	
+	//alokasi memory untuk data baru
+	temp = (Mahasiswa*) malloc(sizeof(struct Mahasiswa));
+	
+	//assign data ke dalam struct
+	temp->nilai = nilai;
+	strcpy(temp->nama, nama);
+
+	//apabila linked list kosong/tidak ada data
+	if(head == NULL){
+		head = tail = temp;
+	}
+	//kondisi tidak kosong
+	else{
+		temp->next = head;
+		head = temp;
+	}	
+}
+
+void print(){
+	temp = head;
+	while(temp != NULL){
+		printf("%s - %d\n",temp->nama,temp->nilai);
+		temp = temp->next;
+	}
+}
+
+void masukkan(){
+	
+	char name[50];
+	float score;
+	
+	printf("Nama: ");
+	scanf("%[^\n]s",&name);
+	printf("Nilai: ");
+	scanf("%f",&score);
+	insert(score,name);
+	print();
+}
+
+
+void menu(){
+	char a;
+	system("cls");
+	printf("  .===========.\n");
+	printf("  |   MENU    |\n");
+	printf("  '==========='\n\n\n");
+	
+	printf("  1. Insert Data\n\n  2. Tampilkan Data\n\n  3. Hapus Data\n\n  4. Cari Data\n\n");
+	printf("  Pilih: ");
+	scanf("%c",&a);
+	switch(a){
+		case '1':
+			masukkan();
+			
+			break;
+			
+		case '2':
+			
+			break;
+			
+		case '3':
+		
+			break;
+			case '4':
+		
+			break;
+			
+		default:
+			printf("Salah!");
+			Sleep(1000);
+			return menu();
+	}	
+}
+
+
+	
+	
+	
